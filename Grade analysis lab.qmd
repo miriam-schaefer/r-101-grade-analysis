@@ -39,6 +39,8 @@ knitr::kable((q2), "simple")
 *Counts the number of students who did not take the final exam (i.e. for whom Exam is NA) and include the results in a sentence in your rendered document.* 
 
 ```{r}
-
+q3 <- grades |> count(is.na(Exam)==TRUE)
+q3
 ```
+There were `r q3[2,2]` students who did not take the final exam. 
 
