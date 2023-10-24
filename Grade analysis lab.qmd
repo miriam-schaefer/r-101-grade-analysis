@@ -33,6 +33,7 @@ q2 <- grades |>
     Median = median(Exam),
     Mean = mean(Exam)
   ) 
+
 knitr::kable((q2), "simple")  
 ```
 
@@ -48,20 +49,28 @@ There were `r q3[2,2]` students who did not take the final exam.
 
 
 ### Question 4
-*Represent graphically in an adapted way the distribution of grades at the Exam. Make sure to adapt the code to avoid any error or warning from ggplot2.
+*Represent graphically in an adapted way the distribution of grades at the Exam. Make sure to adapt the code to avoid any error or warning from ggplot2.*
 
 ```{r}
 q4 <- grades |> 
   filter(!is.na(Exam)) |>
   ggplot(aes(x=Exam)) + 
   geom_bar(fill = "black", color = "white") +
-  labs(x = "Number of students", title ="Distribution of grades")
+  labs(y = "Number of students", x = "Exam grade", title ="Distribution of grades")
 
 q4
 ```
 
 ### Question 5 
 *Compute the number of students in each Group and include the results in your document as a table.
+
+```{r}
+q5 <- grades |> 
+  group_by(Group) |>
+  summarize(N = n()) 
+
+knitr::kable((q5), "simple")  
+```
 
 
 
