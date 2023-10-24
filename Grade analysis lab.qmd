@@ -23,16 +23,19 @@ grades <- read.csv("grades.csv")
 ### Question 2
 *Compute the minimum, maximum, median and mean grade at the Exam and include the results as a table in the rendered document (using, e.g. knitr::kable).*
 
+
 ```{r}
 q2 <- grades |> 
+  filter(!is.na(Exam)) |>
   summarize(
-    Min = min(Exam, na.rm=TRUE), 
-    Max = max(Exam, na.rm=TRUE), 
-    Median = median(Exam, na.rm=TRUE),
-    Mean = mean(Exam, na.rm=TRUE)
+    Min = min(Exam), 
+    Max = max(Exam), 
+    Median = median(Exam),
+    Mean = mean(Exam)
   ) 
-knitr::kable((q2), "simple")
+knitr::kable((q2), "simple")  
 ```
+
 
 
 ### Question 3 
@@ -40,7 +43,26 @@ knitr::kable((q2), "simple")
 
 ```{r}
 q3 <- grades |> count(is.na(Exam)==TRUE)
-q3
 ```
 There were `r q3[2,2]` students who did not take the final exam. 
+
+
+### Question 4
+*Represent graphically in an adapted way the distribution of grades at the Exam. Make sure to adapt the code to avoid any error or warning from ggplot2.
+
+```{r}
+q4 <- grades |> 
+  filter(!is.na(Exam)) |>
+  ggplot(aes(x=Exam)) + 
+  geom_bar(fill = "black", color = "white") +
+  labs(x = "Number of students", title ="Distribution of grades")
+
+q4
+```
+
+### Question 5 
+*Compute the number of students in each Group and include the results in your document as a table.
+
+
+
 
