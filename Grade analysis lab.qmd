@@ -62,7 +62,7 @@ q4
 ```
 
 ### Question 5 
-*Compute the number of students in each Group and include the results in your document as a table.
+*Compute the number of students in each Group and include the results in your document as a table*
 
 ```{r}
 q5 <- grades |> 
@@ -71,6 +71,24 @@ q5 <- grades |>
 
 knitr::kable((q5), "simple")  
 ```
+
+
+### Question 6
+*Represent the same information as in the previous question in a graphical way.
+```{r}
+q6 <- grades |> 
+  ggplot(aes(x=Group)) + 
+  geom_bar(fill = "steelblue", color = "white") + 
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(y = "Number of students", title ="Number of students per group")
+
+q6
+```
+
+
+### Question 7 
+*Represent graphically the distribution of the grades at the Exam conditioned by the group.
+Test at least two different representations.
 
 
 
