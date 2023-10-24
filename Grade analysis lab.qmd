@@ -1,0 +1,18 @@
+---
+title: "Grade analysis lab"
+author: "Miriam Schäfer"
+format: 
+  html:
+    echo: false 
+    warning: false
+---
+
+```{r}
+here::i_am("dplyr-lab.Rproj")
+library(ggplot2)
+library(scales)
+library(tidyr)
+library(dplyr) 
+library(tinytex)
+spotify <- readRDS("top-spotify-songs-from-20102019-by-year.Rds")
+```
