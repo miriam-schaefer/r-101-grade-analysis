@@ -74,7 +74,7 @@ knitr::kable((q5), "simple")
 
 
 ### Question 6
-*Represent the same information as in the previous question in a graphical way.
+*Represent the same information as in the previous question in a graphical way.*
 ```{r}
 q6 <- grades |> 
   ggplot(aes(x=Group)) + 
@@ -87,9 +87,29 @@ q6
 
 
 ### Question 7 
-*Represent graphically the distribution of the grades at the Exam conditioned by the group.
-Test at least two different representations.
+*Represent graphically the distribution of the grades at the Exam conditioned by the group. Test at least two different representations.*
+
+```{r}
+q7_1 <- grades |> 
+  filter(!is.na(Exam)) |>
+  ggplot(aes(x=Group, y=Exam)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(y= "Grade in the exam", title ="1. Distribution of grades among groups (boxplot)")
+
+q7_1
+```
 
 
+```{r}
+q7_2 <- grades |> 
+  filter(!is.na(Exam)) |>
+  ggplot(aes(x=Group, y=Exam)) + 
+  geom_violin() +
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(y= "Grade in the exam", title ="2. Distribution of grades among groups (violin)")
+
+q7_2
+```
 
 
