@@ -7,6 +7,9 @@ format:
     warning: false
 ---
 
+Find my github repository for this lab [here](https://github.com/miriam-schaefer/r-101-grade-analysis).
+
+
 ### Question 1
 *Load the data set using a local file name (using here). Notice that the file is included in the forked repository.*
 
@@ -111,5 +114,23 @@ q7_2 <- grades |>
 
 q7_2
 ```
+
+
+
+### Question 8 
+*Compute the number of students who missed the Exam in each Group (i.e. students whose Exam is NA).*
+
+```{r}
+q8 <- grades |> 
+  group_by(Group) |>
+  summarize(N = n(), 
+            Missed = sum(is.na(Exam))) 
+
+knitr::kable((q8), "simple") 
+```
+
+
+### Question 9 
+
 
 
