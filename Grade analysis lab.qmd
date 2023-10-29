@@ -131,6 +131,25 @@ knitr::kable((q8), "simple")
 
 
 ### Question 9 
+*Represent graphically the results obtained in the previous question.* 
+
+```{r}
+q9 <- q8 |> 
+  ggplot(aes(x=Group, y=Missed)) + 
+  geom_col(fill = "steelblue", color = "white") +
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(y= "No. of students", title ="Number of students who missed the exam per group")
+
+q9
+```
+
+
+
+### Question 10
+*Create a new data frame built from the grades data set reshaped to a long format. The new data frame should keep the Id and the Group as the orignal variables. 
+```{r}
+
+```
 
 
 
