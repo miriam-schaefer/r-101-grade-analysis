@@ -195,7 +195,7 @@ q14 <- q10 |>
 
 
 ### Question 15 
-*Represent graphically the distribution of the grades at the Exam conditioned by the number of missing grades for the online tests.
+*Represent graphically the distribution of the grades at the Exam conditioned by the number of missing grades for the online tests.*
 ```{r}
 q_15 <- grades |> 
   rowwise() |> 
@@ -209,6 +209,15 @@ q_15 <- grades |>
        y="No. of students given the number of online tests they missed")
 
 q15
+```
+
+
+### Question 16 
+*Create a table with two columns: Id to identify students and Missed with value TRUE when the student miss at least one MCQ_xx grade and FALSE when they miss no grade. 
+```{r}
+q_16 <- grades |> 
+  rowwise(Id) |> 
+  summarize(Missed = sum(is.na(c_across(starts_with("MCQ_")))) != 0)
 ```
 
 
