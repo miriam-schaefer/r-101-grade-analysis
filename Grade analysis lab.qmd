@@ -156,7 +156,20 @@ q10 <- gather(grades, Name, Marks, Exam:Online_MCQ_19)
 ```{r}
 q11 <- q10 |> 
   group_by(Id) |> 
-  summarize("Missed evaluations" = sum(is.na(Marks))) 
+  summarize(`Missed evaluations` = sum(is.na(Marks))) 
+```
+
+
+### Question 12 
+*Represent graphically the distribution of the number of missing grades per student.*
+```{r}
+q12 <- q11 |> 
+  ggplot(aes(x=Id, y=`Missed evaluations`)) + 
+  geom_col() + 
+  theme_minimal() + 
+  labs(title="Number of missed evaluations per student")
+
+q12
 ```
 
 
