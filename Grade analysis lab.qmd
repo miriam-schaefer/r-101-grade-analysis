@@ -185,10 +185,10 @@ knitr::kable((q13), "simple")
 ```
 
 ### Question 14
-*Using the long format, compute the number of missing grades for the online tests for each student.
+*Using the long format, compute the number of missing grades for the online tests for each student.*
 ```{r}
 q14 <- q10 |> 
-  filter(str_starts(name, "Online_MCQ")) |> 
+  filter(str_starts(Name, "Online_MCQ")) |> 
   group_by(Id) |> 
   summarize(`Missed online evaluations` = sum(is.na(Marks))) 
 ```
@@ -197,7 +197,7 @@ q14 <- q10 |>
 ### Question 15 
 *Represent graphically the distribution of the grades at the Exam conditioned by the number of missing grades for the online tests.*
 ```{r}
-q_15 <- grades |> 
+q15 <- grades |> 
   rowwise() |> 
   mutate(`Missed online evaluations` = sum(c_across(starts_with("Online_MCQ")) |> is.na())) |>
   
@@ -213,12 +213,23 @@ q15
 
 
 ### Question 16 
-*Create a table with two columns: Id to identify students and Missed with value TRUE when the student miss at least one MCQ_xx grade and FALSE when they miss no grade. 
+*Create a table with two columns: Id to identify students and Missed with value TRUE when the student miss at least one MCQ_xx grade and FALSE when they miss no grade.* 
 ```{r}
-q_16 <- grades |> 
+q16 <- grades |> 
   rowwise(Id) |> 
   summarize(Missed = sum(is.na(c_across(starts_with("MCQ_")))) != 0)
 ```
+
+
+### Question 17 
+*Create a table with two columns: Group to identify groups and P_missed with the percentage of students in each group who missed at least one MCQ_xx grade.*
+```{r}
+q17 <- grades |> 
+  group_by(Group) |>
+  summarize(P_missed = mean(is.na(rowSums(across(starts_with("MCQ_")))) != 0) *100) 
+```
+
+
 
 
 
