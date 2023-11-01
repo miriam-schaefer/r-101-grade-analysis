@@ -230,6 +230,26 @@ q17 <- grades |>
 ```
 
 
+### Question 18
+*Represent graphically the average grade at the Exam per group as a function of the percentage of missed MCQ_xx grade as defined in the previous question.* 
+```{r}
+q18_1 <- grades |> 
+  filter(!is.na(Exam)) |>
+  group_by(Group) |>
+  summarize(Average_grade = mean(Exam)) 
+
+q18_2 <- inner_join(q18_1, q17, by = join_by(Group)) 
+
+q18 <- q18_2 |> 
+  ggplot(aes(y=Average_grade, x=P_missed)) + 
+  geom_point(size=3) + 
+  theme_bw() +
+  labs(title="Average grade per group as a function of % of missed evaluations", 
+       x= "Percentage of missed evaluations per group", 
+       y= "Average grade")
+
+q18
+```
 
 
 
