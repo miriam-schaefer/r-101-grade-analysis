@@ -18,6 +18,7 @@ here::i_am("r-101-grade-analysis.Rproj")
 library(ggplot2)
 library(dplyr)
 library(tidyr) 
+library(stringr)
 
 grades <- read.csv("grades.csv")
 ```
@@ -181,6 +182,15 @@ q13 <- q10 |>
             Missed = sum(is.na(Marks))) 
 
 knitr::kable((q13), "simple") 
+```
+
+### Question 14
+*Using the long format, compute the number of missing grades for the online tests for each student.
+```{r}
+q14 <- q10 |> 
+  filter(str_starts(name, "Online_MCQ")) |> 
+  group_by(Id) |> 
+  summarize(`Missed online evaluations` = sum(is.na(Marks))) 
 ```
 
 
