@@ -144,11 +144,19 @@ q9
 ```
 
 
-
 ### Question 10
 *Create a new data frame built from the grades data set reshaped to a long format. The new data frame should keep the Id and the Group as the original variables.*
 ```{r}
-q10 <- gather(grades, "Type of evaluation", Marks, Exam:Online_MCQ_19) 
+q10 <- gather(grades, Name, Marks, Exam:Online_MCQ_19) 
+```
+
+
+### Question 11 
+*Using the long format, compute the number of missing grades in total for each student.*
+```{r}
+q11 <- q10 |> 
+  group_by(Id) |> 
+  summarize("Missed evaluations" = sum(is.na(Marks))) 
 ```
 
 
