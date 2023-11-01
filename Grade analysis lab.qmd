@@ -194,4 +194,22 @@ q14 <- q10 |>
 ```
 
 
+### Question 15 
+*Represent graphically the distribution of the grades at the Exam conditioned by the number of missing grades for the online tests.
+```{r}
+q_15 <- grades |> 
+  rowwise() |> 
+  mutate(`Missed online evaluations` = sum(c_across(starts_with("Online_MCQ")) |> is.na())) |>
+  
+  ggplot(aes(x=Exam)) + 
+  geom_histogram(bins=40, fill = "darkblue", color = "white") + 
+  facet_wrap(~`Missed online evaluations`) + 
+  labs(title="Distribution of grades in final exam given the number of missed online tests", 
+       x="Grade in final Exam", 
+       y="No. of students given the number of online tests they missed")
+
+q15
+```
+
+
 
