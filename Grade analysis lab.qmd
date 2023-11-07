@@ -243,6 +243,7 @@ q18_2 <- inner_join(q18_1, q17, by = join_by(Group))
 q18 <- q18_2 |> 
   ggplot(aes(y=Average_grade, x=P_missed)) + 
   geom_point(size=3) + 
+  geom_smooth(method = "lm", se=FALSE, color = "blue") +
   theme_bw() +
   labs(title="Average grade per group as a function of % of missed evaluations", 
        x= "Percentage of missed evaluations per group", 
