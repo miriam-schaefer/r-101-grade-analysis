@@ -165,10 +165,11 @@ q11 <- q10 |>
 *Represent graphically the distribution of the number of missing grades per student.*
 ```{r}
 q12 <- q11 |> 
-  ggplot(aes(x=Id, y=`Missed evaluations`)) + 
-  geom_col() + 
-  theme_minimal() + 
-  labs(title="Number of missed evaluations per student")
+  ggplot(aes(x=`Missed evaluations`)) + 
+  geom_histogram(binwidth=1, fill="steelblue", color="white") + 
+  labs(title="Distribution of the number of missing grades", 
+       x="Number of missed evaluations", 
+       y="Number of students")
 
 q12
 ```
@@ -178,7 +179,8 @@ q12
 ```{r}
 q13 <- q10 |> 
   group_by(Group) |> 
-  summarize(N = n(), 
+  filter(Name =="Exam") |>
+  summarize(N = n(),
             Missed = sum(is.na(Marks))) 
 
 knitr::kable((q13), "simple") 
@@ -251,6 +253,5 @@ q18 <- q18_2 |>
 
 q18
 ```
-
 
 
